@@ -1,0 +1,22 @@
+#set("content") {
+    <h1>#(title)</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="userName">Name</label>
+            <input type="text" name="userName" class="form-control" id="userName" #if(editing){value="#(user.name)"}/>
+        </div>
+        <div class="form-group">
+            <label for="userUsername">Username</label>
+            <input type="text" name="userUsername" class="form-control" id="userUsername" #if(editing){value="#(user.username)"}/>
+        </div>
+        <div class="form-group">
+            <label for="userPassword">Password</label>
+            <input type="password" name="userPassword" class="form-control" id="userPassword" #if(editing){value="#(user.password)"}/>
+        </div>
+
+        <button type="submit" class="btn btn-primary">#if(editing){Update} else {Submit}</button>
+    </form>
+}
+
+#embed("base")

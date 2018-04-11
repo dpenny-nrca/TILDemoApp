@@ -1,0 +1,30 @@
+#set("content") {
+    <h1>#(title)</h1>
+
+    #if(count(acronyms) > 0) {
+        <table class="table table-bordered table-hover">
+            <thead class="thead-light">
+                <tr>
+                    <th>
+                        Acronym
+                    </th>
+                    <th>
+                        Meaning
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                #for(acronym in acronyms) {
+                    <tr>
+                        <td><a href="/acronyms/#(acronym.id)">#(acronym.short)</a></td>
+                        <td>#(acronym.long)</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    } else {
+        <h2>No acronyms found</h2>
+    }
+}
+
+#embed("base")

@@ -1,0 +1,14 @@
+#set("content") {
+    <h1>New Cateogry</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="categoryName">Name</label>
+            <input type="text" name="categoryName" class="form-control" id="categoryName " #if(editing){value="#(category.name)"}/>
+        </div>
+
+        <button type="submit" class="btn btn-primary">#if(editing){Update} else {Submit}</button>
+    </form>
+}
+
+#embed("base")
