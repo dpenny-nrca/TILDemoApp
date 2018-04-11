@@ -10,4 +10,4 @@ I have added a few additional features to the app and will continue to use it as
 ***
 
 ### Prerequisites
-The project is configured to use a MySQL server running in Docker. You can see the connection details in [configure.swift](blob/master/Sources/App/configure.swift).
+The project is configured to use a MySQL server running in Docker. You can see the connection details in [configure.swift](Sources/App/configure.swift).
