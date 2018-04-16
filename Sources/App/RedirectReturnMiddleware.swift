@@ -1,5 +1,5 @@
-import Vapor
 import Authentication
+import Vapor
 
 /// Basic middleware to redirect unauthenticated requests to the supplied path
 public struct RedirectReturnMiddleware<A>: Middleware where A: Authenticatable {

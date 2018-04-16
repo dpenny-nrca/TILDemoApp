@@ -1,7 +1,7 @@
-import FluentMySQL
+import Authentication
+import FluentPostgreSQL
 import Foundation
 import Vapor
-import Authentication
 
 final class User: Codable {
     var id: UUID?
@@ -27,11 +27,11 @@ final class User: Codable {
     }
 }
 
-extension User: MySQLUUIDModel {}
+extension User: PostgreSQLUUIDModel {}
 extension User: Content {}
 extension User: Migration {}
 
-extension User.Public: MySQLUUIDModel {
+extension User.Public: PostgreSQLUUIDModel {
     static let entity = User.entity
 }
 extension User.Public: Content {}

@@ -1,7 +1,7 @@
-import FluentMySQL
+import Authentication
+import FluentPostgreSQL
 import Leaf
 import Vapor
-import Authentication
 
 /// Called before your application initializes.
 ///
@@ -12,7 +12,7 @@ public func configure(
     _ services: inout Services
 ) throws {
     // Register providers first
-    try services.register(FluentMySQLProvider())
+    try services.register(FluentPostgreSQLProvider())
     try services.register(LeafProvider())
     try services.register(AuthenticationProvider())
 
@@ -26,21 +26,21 @@ public func configure(
 
     // Configure a SQLite database
     var databases = DatabaseConfig()
-    let mysqlConfig = MySQLDatabaseConfig(hostname: "localhost", port: 3306, username: "til", password: "password", database: "vapor")
-    let database = MySQLDatabase(config: mysqlConfig)
-    databases.add(database: database, as: .mysql)
+    let pgsqlConfig = PostgreSQLDatabaseConfig(hostname: "localhost", port: 5432, username: "til", database: "vapor", password: "password")
+    let database = PostgreSQLDatabase(config: pgsqlConfig)
+    databases.add(database: database, as: .psql)
     services.register(databases)
 
     // Configure migrations
     var migrations = MigrationConfig()
-    migrations.add(model: Acronym.self, database: .mysql)
-    migrations.add(model: User.self, database: .mysql)
-    migrations.add(model: Category.self, database: .mysql)
-    migrations.add(model: AcronymCategoryPivot.self, database: .mysql)
-    migrations.add(model: Token.self, database: .mysql)
+    migrations.add(model: Acronym.self, database: .psql)
+    migrations.add(model: User.self, database: .psql)
+    migrations.add(model: Category.self, database: .psql)
+    migrations.add(model: AcronymCategoryPivot.self, database: .psql)
+    migrations.add(model: Token.self, database: .psql)
     services.register(migrations)
 
-    User.Public.defaultDatabase = .mysql
+    User.Public.defaultDatabase = .psql
     
     // Register routes to the router
     let router = EngineRouter.default()

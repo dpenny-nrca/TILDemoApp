@@ -1,6 +1,6 @@
 import Routing
 import Vapor
-import Imperial
+//import Imperial
 
 /// Register your application's routes here.
 ///
@@ -18,5 +18,5 @@ public func routes(_ router: Router) throws {
     let websiteController = WebsiteController()
     try router.register(collection: websiteController)
 
-    try router.oAuth(from: GitHub.self, authenticate: "github", callback: "github-auth-completed", redirect: "/")
+    //try router.oAuth(from: GitHub.self, authenticate: "github", callback: "github-auth-completed", redirect: "/")
 }

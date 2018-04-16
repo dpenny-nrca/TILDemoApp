@@ -1,8 +1,8 @@
-import FluentMySQL
+import FluentPostgreSQL
 import Foundation
 import Vapor
 
-final class AcronymCategoryPivot: MySQLUUIDPivot {
+final class AcronymCategoryPivot: PostgreSQLUUIDPivot {
     var id: UUID?
     var acronymID: Acronym.ID
     var categoryID: Category.ID

@@ -1,11 +1,10 @@
-import Foundation
-import Vapor
-import Leaf
 import Authentication
-import Fluent
 import Crypto
-import Imperial
-
+import Fluent
+import Foundation
+//import Imperial
+import Leaf
+import Vapor
 
 struct WebsiteController: RouteCollection {
     func boot(router: Router) throws {
@@ -20,11 +19,13 @@ struct WebsiteController: RouteCollection {
         authSessionRoutes.get("login", use: loginHandler)
         authSessionRoutes.post("login", use: loginPostHandler)
 
-        let protectedImperialRoutes = router.grouped(ImperialMiddleware())
-        protectedImperialRoutes.get("create-acronym", use: createAcronymHandler)
-        protectedImperialRoutes.post("create-acronym", use: createAncronymPostHandler)
+//        let protectedImperialRoutes = router.grouped(ImperialMiddleware())
+//        protectedImperialRoutes.get("create-acronym", use: createAcronymHandler)
+//        protectedImperialRoutes.post("create-acronym", use: createAncronymPostHandler)
 
         let protectedRoutes = authSessionRoutes.grouped(RedirectReturnMiddleware<User>(path: "/login"))
+        protectedRoutes.get("create-acronym", use: createAcronymHandler)
+        protectedRoutes.post("create-acronym", use: createAncronymPostHandler)
         protectedRoutes.get("create-category", use: createCategoryHandler)
         protectedRoutes.post("create-category", use: createCategoryPostHandler)
         protectedRoutes.get("create-user", use: createUserHandler)
@@ -53,8 +54,6 @@ struct WebsiteController: RouteCollection {
     }
     
     func createAcronymHandler(_ req: Request) throws -> Future<View> {
-        let token = try req.accessToken()
-        print(token)
         return Category.query(on: req).all().flatMap(to: View.self) { allCategories in
             let content = CreateAcronymContent(title: "New Acronym", allCategories: allCategories)
             return try req.leaf().render("create-acronym", content)

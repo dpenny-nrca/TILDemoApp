@@ -1,4 +1,4 @@
-import FluentMySQL
+import FluentPostgreSQL
 import Vapor
 
 final class Category: Codable {
@@ -11,7 +11,7 @@ final class Category: Codable {
 }
 
 
-extension Category: MySQLModel {}
+extension Category: PostgreSQLModel {}
 extension Category: Content {}
 extension Category: Migration {}
 

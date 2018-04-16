@@ -1,4 +1,4 @@
-import FluentMySQL
+import FluentPostgreSQL
 import Vapor
 
 final class Acronym: Codable {
@@ -15,7 +15,7 @@ final class Acronym: Codable {
 }
 
 
-extension Acronym: MySQLModel {}
+extension Acronym: PostgreSQLModel {}
 extension Acronym: Content {}
 extension Acronym: Migration {}
 

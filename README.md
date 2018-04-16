@@ -10,4 +10,11 @@ I have added a few additional features to the app and will continue to use it as
 ***
 
 ### Prerequisites
-The project is configured to use a MySQL server running in Docker. You can see the connection details in [configure.swift](Sources/App/configure.swift).
+The project is configured to use a Docker container running PostgreSQL. After installing [Docker](https://www.docker.com/community-edition#/download), you can run the following command to create the container:
+```shell
+docker run --name pgsql -e POSTGRES_USER=til -e POSTGRES_PASSWORD=password -e POSTGRES_DB=vapor -p 5432:5432 -d postgres
+```
+
+This creates a new Docker container named `pgsql` and installs the PostgreSQL server.
+
+The databse connection is configured in [configure.swift](Sources/App/configure.swift).

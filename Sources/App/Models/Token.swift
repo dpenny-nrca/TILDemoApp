@@ -1,8 +1,8 @@
+import Authentication
+import Crypto
+import FluentPostgreSQL
 import Foundation
 import Vapor
-import FluentMySQL
-import Crypto
-import Authentication
 
 final class Token: Codable {
     var id: UUID?
@@ -15,7 +15,7 @@ final class Token: Codable {
     }
 }
 
-extension Token: MySQLUUIDModel {}
+extension Token: PostgreSQLUUIDModel {}
 extension Token: Content {}
 extension Token: Migration {}
 

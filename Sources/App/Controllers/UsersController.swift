@@ -1,6 +1,6 @@
-import Vapor
 import Authentication
 import Crypto
+import Vapor
 
 struct UsersController: RouteCollection {
     func boot(router: Router) throws {
